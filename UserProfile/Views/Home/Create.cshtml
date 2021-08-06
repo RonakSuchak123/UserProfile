@@ -1,0 +1,169 @@
+﻿@model UserProfile.Models.UserProfileData
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>UserProfileHeader</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @maxlength = "500" } ,})
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @maxlength = "3" } })
+                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control", @maxlength = "1" } })
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @maxlength = "500" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control", @maxlength = "250" } })
+                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @maxlength = "250" } })
+                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @maxlength = "250" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <input id="myBtn" type="button" class="btn btn-primary btn-lg" value="Add More">
+
+            <div id="companydetails">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserProfileDetails.ExperianceCompany, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserProfileDetails.ExperianceCompany, new { htmlAttributes = new { @class = "form-control", @maxlength = "100" } })
+                        @Html.ValidationMessageFor(model => model.UserProfileDetails.ExperianceCompany, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserProfileDetails.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserProfileDetails.CompanyName, new { htmlAttributes = new { @class = "form-control", @maxlength = "100" } })
+                        @Html.ValidationMessageFor(model => model.UserProfileDetails.CompanyName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserProfileDetails.Designation, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserProfileDetails.Designation, new { htmlAttributes = new { @class = "form-control", @maxlength = "200" } })
+                        @Html.ValidationMessageFor(model => model.UserProfileDetails.Designation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="btnSave" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+
+
+        </div>
+
+
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#companydetails").hide();
+
+            $("#myBtn").click(function () {
+                $("#companydetails").show();
+            //    //debugger;
+            //    //$('#myModal').modal('show');
+            //    $("#companydetails").show();
+            //    $("#companydetails").append("Company Experience : <input type='text' id='txtCompanyExp' name='txtCompanyExp'/><br><br> Company Name : <input type='text' id='txtCompanyName' name='txtCompanyName'/><br><br>Designation : <input type='text' id='txtDesignation' name='txtDesignation'/><br><br>  ");
+
+            });
+
+            //$("#btnSave").click(function () {
+            //    debugger;
+            //    var txtCompanyExp = $("#txtCompanyExp").val();
+            //    var txtCompanyName = $("#txtCompanyName").val();
+            //    var txtDesignation = $("#txtDesignation").val();
+
+            //    $.ajax({
+            //        type: "post",
+            //        url: "/Home/InsertData",
+            //        data: { CompanyExp: txtCompanyExp, CompanyName: txtCompanyName, Designation: txtDesignation},
+            //        contentType: 'application/json; charset=utf-8',
+            //        success: function (result) {
+            //            if (result.length == 0) {
+            //                SetData.append('<tr style="color:red"><td colspan="3">No Match Data</td></tr>')
+            //            }
+                        
+            //        }
+            //    });
+            //});
+        });
+    </script>
+
+</body>
+</html>
+
+
+
